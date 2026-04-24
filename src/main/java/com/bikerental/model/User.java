@@ -16,7 +16,9 @@ public class User {
     private String createdDate;
 
     // Default constructor
-    public User() {}
+    public User() {
+
+    }
 
     // Parameterized constructor
     public User(String userId, String username, String email, String password, String phone, String paymentMethod, String role, String createdDate) {
