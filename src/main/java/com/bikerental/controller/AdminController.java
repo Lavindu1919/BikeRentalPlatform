@@ -22,7 +22,7 @@ public class AdminController {
         return session.getAttribute("loggedAdmin") != null;
     }
 
-    //READ: List all admins
+    // ─── READ: List all admins ────────────────────────────────────────────────────
 
     @GetMapping("/list")
     public String listAdmins(HttpSession session, Model model) {
@@ -32,7 +32,7 @@ public class AdminController {
         return "admin/admin-list";
     }
 
-    //CREATE: Register new admin
+    // ─── CREATE: Register new admin ──────────────────────────────────────────────
 
     @GetMapping("/register")
     public String registerPage(HttpSession session) {
@@ -55,7 +55,7 @@ public class AdminController {
         return "admin/admin-register";
     }
 
-    // UPDATE: Edit admin details
+    // ─── UPDATE: Edit admin details ──────────────────────────────────────────────
 
     @GetMapping("/edit/{adminId}")
     public String editPage(@PathVariable String adminId, HttpSession session, Model model) {
@@ -76,7 +76,7 @@ public class AdminController {
         return "redirect:/admin/list";
     }
 
-    // DELETE: Remove admin
+    // ─── DELETE: Remove admin ────────────────────────────────────────────────────
 
     @PostMapping("/delete")
     public String deleteAdmin(@RequestParam String adminId, HttpSession session, Model model) {
