@@ -91,9 +91,6 @@ public class FileHandler {
 
     //  Delete by ID 
 
-    /**
-     * Remove all lines from a file where the first pipe-delimited field matches id.
-     */
     public boolean deleteById(String filename, String id) {
         List<String> lines = readLines(filename);
         int before = lines.size();
@@ -134,14 +131,12 @@ public class FileHandler {
                 .orElse(null);
     }
 
-    //  ID Existence Check 
-
+    //  ID Existence Check
     public boolean existsById(String filename, String id) {
         return findById(filename, id) != null;
     }
 
-    //  Count Records 
-
+    //  Count Records
     public int countRecords(String filename) {
         return readLines(filename).size();
     }

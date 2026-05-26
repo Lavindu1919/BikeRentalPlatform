@@ -10,24 +10,21 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-/**
- * UserService handles all CRUD operations for User management.
- * Data is persisted via FileHandler to users.txt
- */
+
+//  UserService handles CRUD operations for User management.
+// *Data is persisted via FileHandler to users.txt
+
 @Service
 public class UserService {
 
     private static final String USERS_FILE = "users.txt";
-    private static final DateTimeFormatter DTF =
-            DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+    private static final DateTimeFormatter DTF = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
     @Autowired
     private FileHandler fileHandler;
 
-    //  CREATE 
-
-    public boolean registerUser(String username, String email, String password,
-                                String phone, String paymentMethod) {
+    //  CREATE
+    public boolean registerUser(String username, String email, String password, String phone, String paymentMethod) {
         // Check if username or email already exists
         if (findByUsername(username) != null) return false;
         if (findByEmail(email) != null) return false;
@@ -35,8 +32,7 @@ public class UserService {
         String userId = "USR-" + UUID.randomUUID().toString().substring(0, 8).toUpperCase();
         String createdDate = LocalDateTime.now().format(DTF);
 
-        User newUser = new User(userId, username, email, password,
-                phone, paymentMethod, "USER", createdDate);
+        User newUser = new User(userId, username, email, password,phone, paymentMethod, "USER", createdDate);
         fileHandler.appendLine(USERS_FILE, newUser.toFileString());
         return true;
     }
@@ -100,14 +96,12 @@ public class UserService {
         return fileHandler.updateById(USERS_FILE, userId, user.toFileString());
     }
 
-    // DELETE 
-
+    // DELETE
     public boolean deleteUser(String userId) {
         return fileHandler.deleteById(USERS_FILE, userId);
     }
 
-    //  STATS 
-
+    //  STATS
     public int getTotalUserCount() {
         return getAllUsers().size();
     }

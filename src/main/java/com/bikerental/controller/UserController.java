@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 
 /**
  * UserController handles user profile management operations.
- * Covers all 4 CRUD operations for Component 01.
  */
 @Controller
 @RequestMapping("/user")
@@ -19,8 +18,7 @@ public class UserController {
 
     @Autowired private UserService userService;
 
-    // ─── READ: View Profile ───────────────────────────────────────────────────────
-
+    //  READ: View Profile
     @GetMapping("/profile")
     public String profile(HttpSession session, Model model) {
         User user = (User) session.getAttribute("loggedUser");
@@ -37,10 +35,10 @@ public class UserController {
                                 @RequestParam String phone,
                                 @RequestParam String paymentMethod,
                                 HttpSession session, Model model) {
-        User user = (User) session.getAttribute("loggedUser");
+        User user = (User) session.getAttribute("loggedUser");  //dependency
         if (user == null) return "redirect:/login";
 
-        boolean ok = userService.updateUser(userId, email, phone, paymentMethod);
+        boolean ok = userService.updateUser(userId, email, phone, paymentMethod);                       //abstraction
         if (ok) {
             // Refresh session user
             User updated = userService.findById(userId);

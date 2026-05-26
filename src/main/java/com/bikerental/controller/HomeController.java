@@ -21,7 +21,7 @@ import java.util.stream.Collectors;
 @Controller
 public class HomeController {
 
-    @Autowired private UserService    userService;
+    @Autowired private UserService    userService;                      //association
     @Autowired private AdminService   adminService;
     @Autowired private BikeService    bikeService;
     @Autowired private RideService    rideService;
